@@ -1,1 +1,49 @@
+/* This centers everything and sets the background */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
 
+/* This styles your Header (AuraBazar title) */
+header {
+    background-color: #000000;
+    color: #FFD700; /* Gold color for a premium feel */
+    padding: 40px 0;
+    margin-bottom: 30px;
+}
+
+/* This creates a nice "Card" around your Neymar Jersey */
+.product-container {
+    background: white;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* This makes your Jersey photo look perfect */
+img {
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05); /* Zoom in slightly when someone touches it */
+}
+
+/* This styles your WhatsApp button */
+.btn {
+    background-color: #25D366;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+}
