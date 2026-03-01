@@ -6,7 +6,7 @@ const products = [
         category: "Jersey"
     },
     {
-        name: "Premium Wireless Earbuds",
+        name: "HOCO Premium Wireless Earbuds",
         price: "1500 BDT",
         image: "hoco.jpg.jpg", 
         category: "Gadget"
