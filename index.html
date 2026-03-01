@@ -9,6 +9,32 @@
 <script src="products.js"></script>
 </head>
     <script>
+        let currentProduct = "";
+
+function openForm(productName) {
+    currentProduct = productName;
+    // Show the product name inside the form so the user sees what they are buying
+    document.getElementById("selectedProductName").innerText = "Product: " + productName;
+    document.getElementById("orderModal").style.display = "block";
+}
+
+function sendToWhatsApp() {
+    const name = document.getElementById("custName").value;
+    const phone = document.getElementById("custPhone").value;
+    const address = document.getElementById("custAddress").value;
+
+    if(name === "" || phone === "" || address === "") {
+        alert("অনুগ্রহ করে সব তথ্য পূরণ করুন");
+        return;
+    }
+
+    // ENTER YOUR WHATSAPP NUMBER HERE
+    const myNumber = "8801700000000"; 
+    
+    const message = `*AuraBazar Order*%0A--------------------------%0A*Product:* ${currentProduct}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A--------------------------%0Aধন্যবাদ!`;
+    
+    window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+}
 function searchFunction() {
     var input, filter, cards, h2, i, txtValue;
     input = document.getElementById("myInput");
@@ -27,7 +53,6 @@ function searchFunction() {
 }
 </script>
 <body>
-
     <header>
         <h1>AuraBazar</h1>
         <p>সেরা মানের ফুটবল জার্সি এবং গ্যাজেট</p>
@@ -55,6 +80,7 @@ function searchFunction() {
                     <h2>${product.name}</h2>
                     <p class="price">${product.price}</p>
                     <a href="https://wa.me/8801909475216" class="btn">WhatsApp এ অর্ডার দিন</a>
+                    <button onclick="openForm('${product.name}')" class="btn">Shop Now</button>
                 </div>
             `;
         });
@@ -69,6 +95,52 @@ function searchFunction() {
 
     // Load all products when page opens
     displayProducts(products);
+    let selectedProduct = "";
+
+function openForm(productName) {
+    selectedProduct = productName;
+    document.getElementById("orderModal").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("orderModal").style.display = "none";
+}
+
+function sendToWhatsApp() {
+    const name = document.getElementById("custName").value;
+    const address = document.getElementById("custAddress").value;
+    const phone = document.getElementById("custPhone").value;
+
+    const myNumber = "8801909475216"; 
+    
+    const message = `নতুন অর্ডার!%0Aপণ্য: ${selectedProduct}%0Aনাম: ${name}%0Aঠিকানা: ${address}%0Aফোন: ${phone}`;
+    window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+}
 </script>
+    <div id="orderModal" style="display:none; position:fixed; z-index:100; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); overflow-y: auto;">
+  <div style="background-color:white; margin:10% auto; padding:25px; width:90%; max-width:400px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+    <span onclick="closeForm()" style="float:right; cursor:pointer; font-size:30px; font-weight:bold;">&times;</span>
+    
+    <h2 style="color: #333; text-align: center;">Order Details</h2>
+    <p id="selectedProductName" style="font-weight: bold; color: #007bff; text-align: center; font-size: 1.2rem;"></p>
+    <hr>
+
+    <form id="checkoutForm">
+      <label>আপনার নাম (Full Name):</label>
+      <input type="text" id="custName" placeholder="যেমন: রাইহান আহমেদ" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:5px; box-sizing: border-box;">
+      
+      <label>মোবাইল নম্বর (Phone Number):</label>
+      <input type="tel" id="custPhone" placeholder="017XXXXXXXX" required style="width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:5px; box-sizing: border-box;">
+      
+      <label>ডেলিভারি ঠিকানা (Delivery Address):</label>
+      <textarea id="custAddress" placeholder="বাসা নং, রোড নং, এলাকা এবং জেলা লিখুন" required style="width:100%; height:80px; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:5px; box-sizing: border-box;"></textarea>
+
+       <button onclick="openForm('${product.name}')" class="btn">Shop Now</button> 
+      <button type="button" onclick="sendToWhatsApp()" style="background:#25D366; color:white; padding:15px; border:none; border-radius:8px; width:100%; cursor:pointer; font-size:16px; font-weight:bold; margin-top:10px;">
+        <i class="fab fa-whatsapp"></i> অর্ডার কনফার্ম করুন
+      </button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
