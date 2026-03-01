@@ -7,13 +7,34 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+    <script>
+function searchFunction() {
+    var input, filter, cards, h2, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    cards = document.getElementsByClassName("product-container");
+
+    for (i = 0; i < cards.length; i++) {
+        h2 = cards[i].getElementsByTagName("h2")[0];
+        txtValue = h2.textContent || h2.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+</script>
 <body>
 
     <header>
         <h1>AuraBazar</h1>
         <p>সেরা মানের ফুটবল জার্সি এবং গ্যাজেট</p>
     </header>
-
+<div style="padding: 20px; text-align: center;">
+    <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="জার্সি বা গ্যাজেট খুঁজুন..." 
+    style="width: 80%; max-width: 400px; padding: 12px; border-radius: 25px; border: 1px solid #ddd; outline: none;">
+</div>
     <div class="product-container">
         <img src="neymar.jpg.jpeg" alt="Neymar Jersey" style="width: 100%; max-width: 300px;">
         
